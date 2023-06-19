@@ -1,0 +1,39 @@
+server:
+  port: 9000
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: [ "health","prometheus", "metrics" ]
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+spring:
+  application:
+    name: Consumer Processing
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    consumer:
+      auto-offset-reset: earliest
+      max-poll-records: 1
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+
+
+
+
